@@ -1,0 +1,71 @@
+<h3 class="text-center">Create Vaccine inventory</h3>
+<div [hidden]="submitted"  >
+  <form #createForm="ngForm" (ngSubmit)="onSubmit(createForm)" class = "container col-sm-6 col-lg-6 col-mg-6">
+    
+    <div class="form-group" >
+
+      <label for="date">Date </label>
+      <input type="date" class="form-control" id="date" required  min="2020-11-20"  #date="ngModel"  [(ngModel)]="inventory.date" name="date" >
+    
+    <div *ngIf="!date?.valid && (date?.dirty || date?.touched)" class="required">
+    <div *ngIf="date.errors?.['required']" class="required">
+      Date is Required.
+    </div>
+    </div>
+    
+      <label for="quantity">Vaccine Quantity</label>
+      <input type="text"  class="form-control" id="quantity" required minlength="1" #quantity = "ngModel"   [(ngModel)]="inventory.quantity" name="quantity" placeholder="Enter vaccine quantity" pattern="^[0-9]*$">
+  
+    <div *ngIf="!quantity?.valid && (quantity?.dirty || quantity?.touched)" class="required">
+      <div *ngIf="quantity.errors?.['required']">
+        Vaccine quantity is Required.
+      </div>
+      </div>
+      <div *ngIf="quantity.errors?.['minlength']">
+        Vaccine Minimum Length is {{quantity.errors?.['minlength']?.requiredLength}}.
+      </div>
+      <div *ngIf="quantity.errors?.['pattern']" class="required">
+        Only numbers are allowed.
+      </div>
+   
+      <label for="price">Vaccine Price</label>
+      <input type="text" class="form-control" id="price" required minlength="3"  #price ="ngModel"[(ngModel)]="inventory.price" name="price" placeholder="Enter vaccine price" pattern="^[0-9]*$">
+    
+    <div *ngIf="!price?.valid && (price?.dirty || price?.touched)" class="required">
+      <div *ngIf="quantity.errors?.['required']" >
+        Vaccine price is Required.
+      </div>
+      </div>
+      <div *ngIf="price.errors?.['minlength']" class="required">
+        Vaccine must be 100/rs 
+      </div>
+      <div *ngIf="price.errors?.['pattern']" class="required">
+        Only numbers are allowed.
+      </div>
+   
+      <label for="id">Vaccine Id</label>
+      <input type="text" class="form-control" id="vaccineId" required minlength="1"  #vaccineId ="ngModel" [(ngModel)]="inventory.vaccineId" name="vaccineId" placeholder="Enter vaccine Id" pattern="^[0-9]*$">
+    
+    <div *ngIf="!vaccineId?.valid && (vaccineId?.dirty ||vaccineId?.touched)" class="required">
+      <div *ngIf="vaccineId.errors?.['required']">
+        Vaccine Id is Required.
+      </div>
+    </div>
+    <div *ngIf="vaccineId.errors?.['minlength']">
+      Vaccine Minimum Length is  {{vaccineId.errors?.['minlength']?.requiredLength}}.
+    </div>
+    <div *ngIf="vaccineId.errors?.['pattern']" class="required">
+      Only numbers are allowed.
+    </div>
+    <p>
+      <button class="btn btn-success" type="Submit" [disabled]="!createForm.valid">Submit</button>
+    </p>
+    <p>
+      <button type="button" class="btn btn-dark" routerLink="/vaccinecenters" routerLinkActive="active" style="position: relative; top: 20px;"class="btn btn-primary">Back</button>
+    </p>
+  </div>
+  </form>
+  <button type="button" class="btn btn-dark" routerLink="/inventories" routerLinkActive="active">To Inventory List</button> 
+</div>
+<app-footer></app-footer>
+

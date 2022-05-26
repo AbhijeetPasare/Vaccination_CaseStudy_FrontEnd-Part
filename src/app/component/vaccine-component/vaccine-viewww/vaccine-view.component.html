@@ -1,0 +1,9 @@
+
+<div *ngFor="let vaccines of vaccine | async" class="container">
+    <p class="text-center" title="{{vaccines.vaccineName}}"><b>{{vaccines.vaccineName}}</b></p>
+    <p class="description">{{vaccines.description}}</p>
+    
+</div>
+<button type="button" class="btn btn-dark" routerLink="/vaccine-view" routerLinkActive="active" style="position: relative; top: 20px;">Back</button>
+
+<app-footer></app-footer>
